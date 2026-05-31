@@ -12,7 +12,7 @@ const seedAdmin = async () => {
     await connectDB();
 
     const exists = await Admin.findOne({
-      email: "admin@companyxyz.com",
+      email: "aimable.kwizera14@gmail.com",
     });
 
     if (exists) {
@@ -25,13 +25,13 @@ const seedAdmin = async () => {
 
     await Admin.create({
       name: "System Admin",
-      email: "admin@companyxyz.com",
+      email: "aimable.kwizera14@gmail.com",
       password: hashed,
     });
 
     console.log("Admin created successfully");
 
-    console.log("Email: admin@companyxyz.com");
+    console.log("Email: aimable.kwizera14@gmail.com");
 
     console.log("Password: Admin@123");
 
