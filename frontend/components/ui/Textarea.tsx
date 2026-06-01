@@ -2,48 +2,52 @@
 
 import React, { forwardRef } from "react";
 
-interface Props
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
 }
 
-const Textarea = forwardRef<
-  HTMLTextAreaElement,
-  Props
->(({ label, error, ...props }, ref) => {
-  return (
-    <div className="space-y-1">
-      {label && (
-        <label className="text-sm text-gray-300">
-          {label}
-        </label>
-      )}
+const Textarea = forwardRef<HTMLTextAreaElement, Props>(
+  ({ label, error, ...props }, ref) => {
+    return (
+      <div className="space-y-2">
+        {label && (
+          <label className="text-sm font-medium" style={{ color: "#2F2F2F" }}>
+            {label}
+          </label>
+        )}
 
-      <textarea
-        ref={ref}
-        {...props}
-        rows={4}
-        className="
+        <textarea
+          ref={ref}
+          {...props}
+          rows={4}
+          className="
           w-full
-          bg-gray-900
-          border
-          border-gray-700
           rounded-lg
+          border
           px-4
           py-3
-          text-white
+          focus:outline-none
+          focus:ring-2
+          focus:ring-blue-500
+          transition
         "
-      />
+          style={{
+            backgroundColor: "#FFFFFF",
+            borderColor: error ? "#E91E63" : "#D2D2D2",
+            color: "#2F2F2F",
+          }}
+        />
 
-      {error && (
-        <p className="text-red-400 text-sm">
-          {error}
-        </p>
-      )}
-    </div>
-  );
-});
+        {error && (
+          <p className="text-sm" style={{ color: "#E91E63" }}>
+            {error}
+          </p>
+        )}
+      </div>
+    );
+  },
+);
 
 Textarea.displayName = "Textarea";
 

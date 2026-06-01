@@ -13,7 +13,9 @@ export default function Page() {
 
   return (
     <div className="card">
-      <h1 className="text-2xl font-bold mb-6">Create Extinguisher</h1>
+      <h1 className="text-2xl font-bold mb-6" style={{ color: "#2F2F2F" }}>
+        Create Extinguisher
+      </h1>
 
       <ExtinguisherForm
         onSubmit={async (values) => {

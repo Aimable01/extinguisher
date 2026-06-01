@@ -15,22 +15,23 @@ export default function Header() {
 
   return (
     <header
-      className="
-      flex justify-between items-center
-      bg-gray-800
-      p-5
-      border-b border-gray-700
-    "
+      className="flex justify-between items-center p-5 border-b"
+      style={{
+        backgroundColor: "#FFFFFF",
+        borderColor: "#D2D2D2",
+      }}
     >
-      <h2 className="font-semibold">Fire Extinguisher Management</h2>
+      <h2 className="font-semibold" style={{ color: "#2F2F2F" }}>
+        Fire Extinguisher Management
+      </h2>
 
       <button
         onClick={logout}
-        className="
-          bg-red-600
-          px-4 py-2
-          rounded-lg
-        "
+        className="px-4 py-2 rounded-lg transition hover:bg-red-700"
+        style={{
+          backgroundColor: "#D32F2F",
+          color: "#FFFFFF",
+        }}
       >
         Logout
       </button>

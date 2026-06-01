@@ -26,26 +26,12 @@ export default function StatsCards({ total, active, expired, police }: Props) {
   ];
 
   return (
-    <div
-      className="
-      grid
-      grid-cols-1
-      md:grid-cols-2
-      xl:grid-cols-4
-      gap-4
-      "
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
       {cards.map((card) => (
         <div key={card.title} className="card">
-          <h3 className="text-gray-400">{card.title}</h3>
+          <h3 style={{ color: "#666666" }}>{card.title}</h3>
 
-          <p
-            className="
-              text-3xl
-              font-bold
-              mt-3
-              "
-          >
+          <p className="text-3xl font-bold mt-3" style={{ color: "#2F2F2F" }}>
             {card.value}
           </p>
         </div>

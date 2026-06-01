@@ -10,24 +10,37 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export default function Input({ error, label, ...props }: InputProps) {
   return (
     <div className="space-y-2">
-      {label && <label className="text-sm text-gray-300">{label}</label>}
+      {label && (
+        <label className="text-sm font-medium" style={{ color: "#2F2F2F" }}>
+          {label}
+        </label>
+      )}
 
       <input
         {...props}
         className="
           w-full
-          rounded-xl
+          rounded-lg
           border
-          border-gray-700
-          bg-gray-900
           px-4
           py-3
-          text-white
-          focus:border-blue-500
+          focus:outline-none
+          focus:ring-2
+          focus:ring-blue-500
+          transition
         "
+        style={{
+          backgroundColor: "#FFFFFF",
+          borderColor: error ? "#E91E63" : "#D2D2D2",
+          color: "#2F2F2F",
+        }}
       />
 
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && (
+        <p className="text-sm" style={{ color: "#E91E63" }}>
+          {error}
+        </p>
+      )}
     </div>
   );
 }

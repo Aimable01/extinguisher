@@ -56,51 +56,44 @@ export default function VerifyOtpPage() {
 
   return (
     <div
-      className="
-      min-h-screen
-      flex items-center justify-center
-      bg-gray-950
-    "
+      className="min-h-screen flex items-center justify-center"
+      style={{ backgroundColor: "#FFFFFF" }}
     >
       <div
-        className="
-        bg-gray-900
-        p-8
-        rounded-xl
-        w-full
-        max-w-md
-      "
+        className="p-8 rounded-lg w-full max-w-md shadow-lg"
+        style={{
+          backgroundColor: "#FFFFFF",
+          border: "1px solid #D2D2D2",
+        }}
       >
-        <h1 className="text-2xl font-bold mb-5">Verify OTP</h1>
+        <h1 className="text-2xl font-bold mb-5" style={{ color: "#2F2F2F" }}>
+          Verify OTP
+        </h1>
 
         <input
           maxLength={6}
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
-          className="
-            w-full
-            bg-gray-800
-            text-center
-            text-3xl
-            tracking-[12px]
-            rounded-xl
-            p-4
-          "
+          className="w-full text-center text-3xl tracking-[12px] rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          style={{
+            backgroundColor: "#FFFFFF",
+            borderColor: "#D2D2D2",
+            color: "#2F2F2F",
+            borderWidth: "1px",
+          }}
         />
 
-        <p className="mt-4 text-gray-400">
+        <p className="mt-4" style={{ color: "#666666" }}>
           {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
         </p>
 
         <button
           onClick={handleVerify}
-          className="
-            w-full
-            bg-blue-600
-            py-3
-            rounded-xl
-            mt-6
-          "
+          className="w-full py-3 rounded-lg mt-6 transition"
+          style={{
+            backgroundColor: "#2F2F2F",
+            color: "#FFFFFF",
+          }}
         >
           Verify OTP
         </button>
@@ -108,11 +101,10 @@ export default function VerifyOtpPage() {
         <button
           disabled={timer > 0}
           onClick={handleResend}
-          className="
-            w-full
-            mt-3
-            text-blue-400
-          "
+          className="w-full mt-3 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{
+            color: timer > 0 ? "#C5C5C5" : "#2F2F2F",
+          }}
         >
           Resend OTP
         </button>

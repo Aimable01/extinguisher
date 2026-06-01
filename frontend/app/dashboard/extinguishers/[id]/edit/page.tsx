@@ -41,16 +41,22 @@ export default function Page() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-100">
-        <div className="text-gray-400">Loading...</div>
+      <div
+        className="flex items-center justify-center min-h-100"
+        style={{ color: "#666666" }}
+      >
+        Loading...
       </div>
     );
   }
 
   if (!extinguisher) {
     return (
-      <div className="flex items-center justify-center min-h-100">
-        <div className="text-red-400">Extinguisher not found</div>
+      <div
+        className="flex items-center justify-center min-h-100"
+        style={{ color: "#D32F2F" }}
+      >
+        Extinguisher not found
       </div>
     );
   }
@@ -63,7 +69,9 @@ export default function Page() {
 
   return (
     <div className="card">
-      <h1 className="text-2xl font-bold mb-6">Edit Extinguisher</h1>
+      <h1 className="text-2xl font-bold mb-6" style={{ color: "#2F2F2F" }}>
+        Edit Extinguisher
+      </h1>
 
       <ExtinguisherForm
         defaultValues={defaultValues}

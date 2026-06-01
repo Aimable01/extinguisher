@@ -12,6 +12,7 @@ import {
 import { protect } from "../middleware/authMiddleware";
 
 import { validateRequest } from "../middleware/validateMiddleware";
+import { loginLimiter } from "../middleware/rateLimit";
 
 const router = Router();
 
@@ -49,6 +50,7 @@ const router = Router();
  */
 router.post(
   "/login",
+  loginLimiter,
   [
     body("email").isEmail().withMessage("Valid email required"),
 

@@ -14,7 +14,10 @@ export default function DashboardLayout({
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: "#FFFFFF", color: "#2F2F2F" }}
+      >
         Loading...
       </div>
     );
@@ -27,7 +30,12 @@ export default function DashboardLayout({
       <div className="flex-1">
         <Header />
 
-        <main className="p-6 bg-gray-950 min-h-screen">{children}</main>
+        <main
+          className="p-6 min-h-screen"
+          style={{ backgroundColor: "#FBFBFB" }}
+        >
+          {children}
+        </main>
       </div>
     </div>
   );

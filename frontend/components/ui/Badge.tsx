@@ -6,23 +6,23 @@ interface Props {
 
 export default function Badge({ status }: Props) {
   const colors = {
-    active: "bg-green-500 text-white",
-
-    expired: "bg-red-500 text-white",
-
-    reported: "bg-yellow-500 text-black",
-
-    police_notified: "bg-red-700 text-white",
+    active: { bg: "#4CAF50", text: "#FFFFFF" },
+    expired: { bg: "#F44336", text: "#FFFFFF" },
+    reported: { bg: "#FFC107", text: "#000000" },
+    police_notified: { bg: "#D32F2F", text: "#FFFFFF" },
   };
+
+  const color = colors[status];
 
   return (
     <span
-      className={`
-        px-3 py-1 rounded-full text-xs
-        ${colors[status]}
-      `}
+      className="px-3 py-1 rounded-full text-xs font-medium"
+      style={{
+        backgroundColor: color.bg,
+        color: color.text,
+      }}
     >
-      {status}
+      {status.replace("_", " ").toUpperCase()}
     </span>
   );
 }

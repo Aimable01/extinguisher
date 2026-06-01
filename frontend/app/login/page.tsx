@@ -50,24 +50,20 @@ export default function LoginPage() {
 
   return (
     <div
-      className="
-      min-h-screen
-      flex items-center justify-center
-      bg-gray-950
-    "
+      className="min-h-screen flex items-center justify-center"
+      style={{ backgroundColor: "#FFFFFF" }}
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="
-          bg-gray-900
-          p-8
-          rounded-xl
-          w-full
-          max-w-md
-          space-y-5
-        "
+        className="p-8 rounded-lg w-full max-w-md space-y-5 shadow-lg"
+        style={{
+          backgroundColor: "#FFFFFF",
+          border: "1px solid #D2D2D2",
+        }}
       >
-        <h1 className="text-2xl font-bold">Admin Login</h1>
+        <h1 className="text-2xl font-bold" style={{ color: "#2F2F2F" }}>
+          Admin Login
+        </h1>
 
         <Input
           label="Email"

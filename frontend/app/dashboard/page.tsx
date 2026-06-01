@@ -41,16 +41,22 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-100">
-        <div className="text-gray-400">Loading dashboard...</div>
+      <div
+        className="flex items-center justify-center min-h-100"
+        style={{ color: "#666666" }}
+      >
+        Loading dashboard...
       </div>
     );
   }
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center min-h-100">
-        <div className="text-red-400">Failed to load dashboard data</div>
+      <div
+        className="flex items-center justify-center min-h-100"
+        style={{ color: "#D32F2F" }}
+      >
+        Failed to load dashboard data
       </div>
     );
   }
@@ -65,19 +71,30 @@ export default function DashboardPage() {
       />
 
       <div className="card">
-        <h2 className="text-xl font-bold mb-4">Recent Records</h2>
+        <h2 className="text-xl font-bold mb-4" style={{ color: "#2F2F2F" }}>
+          Recent Records
+        </h2>
 
         {data.recent.length === 0 ? (
-          <div className="text-gray-400 text-center py-8">
+          <div className="text-center py-8" style={{ color: "#666666" }}>
             No recent records found
           </div>
         ) : (
           <table className="w-full">
             <thead>
-              <tr className="text-left border-b border-gray-700">
-                <th className="pb-3">ID</th>
-                <th className="pb-3">Owner</th>
-                <th className="pb-3">Status</th>
+              <tr
+                className="text-left border-b"
+                style={{ borderColor: "#D2D2D2" }}
+              >
+                <th className="pb-3" style={{ color: "#2F2F2F" }}>
+                  ID
+                </th>
+                <th className="pb-3" style={{ color: "#2F2F2F" }}>
+                  Owner
+                </th>
+                <th className="pb-3" style={{ color: "#2F2F2F" }}>
+                  Status
+                </th>
               </tr>
             </thead>
 
@@ -85,10 +102,13 @@ export default function DashboardPage() {
               {data.recent.map((item) => (
                 <tr
                   key={item._id}
-                  className="border-b border-gray-800 hover:bg-gray-800/50"
+                  className="border-b hover:bg-gray-50 transition"
+                  style={{ borderColor: "#D2D2D2" }}
                 >
-                  <td className="py-4">{item.extinguisherId}</td>
-                  <td>{item.ownerName}</td>
+                  <td className="py-4" style={{ color: "#2F2F2F" }}>
+                    {item.extinguisherId}
+                  </td>
+                  <td style={{ color: "#666666" }}>{item.ownerName}</td>
                   <td>
                     <Badge status={item.status} />
                   </td>

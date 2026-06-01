@@ -17,24 +17,30 @@ export default function ExtinguisherTable({ data, onDelete }: Props) {
     <div className="card overflow-auto">
       <table className="w-full">
         <thead>
-          <tr
-            className="
-            text-left
-            border-b
-            border-gray-700
-            "
-          >
-            <th className="pb-3">ID</th>
+          <tr className="text-left border-b" style={{ borderColor: "#D2D2D2" }}>
+            <th className="pb-3" style={{ color: "#2F2F2F" }}>
+              ID
+            </th>
 
-            <th className="pb-3">Owner</th>
+            <th className="pb-3" style={{ color: "#2F2F2F" }}>
+              Owner
+            </th>
 
-            <th className="pb-3">ID Number</th>
+            <th className="pb-3" style={{ color: "#2F2F2F" }}>
+              ID Number
+            </th>
 
-            <th className="pb-3">Expiry</th>
+            <th className="pb-3" style={{ color: "#2F2F2F" }}>
+              Expiry
+            </th>
 
-            <th className="pb-3">Status</th>
+            <th className="pb-3" style={{ color: "#2F2F2F" }}>
+              Status
+            </th>
 
-            <th className="pb-3">Actions</th>
+            <th className="pb-3" style={{ color: "#2F2F2F" }}>
+              Actions
+            </th>
           </tr>
         </thead>
 
@@ -42,18 +48,18 @@ export default function ExtinguisherTable({ data, onDelete }: Props) {
           {data.map((extinguisher) => (
             <tr
               key={extinguisher._id}
-              className="
-                border-b
-                border-gray-800
-                "
+              className="border-b hover:bg-gray-50 transition"
+              style={{ borderColor: "#D2D2D2" }}
             >
-              <td className="py-4">{extinguisher.extinguisherId}</td>
+              <td className="py-4" style={{ color: "#2F2F2F" }}>
+                {extinguisher.extinguisherId}
+              </td>
 
-              <td>{extinguisher.ownerName}</td>
+              <td style={{ color: "#666666" }}>{extinguisher.ownerName}</td>
 
-              <td>{extinguisher.ownerIdNumber}</td>
+              <td style={{ color: "#666666" }}>{extinguisher.ownerIdNumber}</td>
 
-              <td>
+              <td style={{ color: "#666666" }}>
                 {new Date(extinguisher.expirationDate).toLocaleDateString()}
               </td>
 

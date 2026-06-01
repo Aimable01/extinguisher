@@ -78,29 +78,23 @@ export default function Page() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by owner name or ID..."
-            className="
-              bg-gray-900
-              border
-              border-gray-700
-              px-4
-              py-2
-              rounded-lg
-              flex-1
-              max-w-md
-            "
+            className="border px-4 py-2 rounded-lg flex-1 max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderColor: "#D2D2D2",
+              color: "#2F2F2F",
+            }}
           />
 
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="
-              bg-gray-900
-              border
-              border-gray-700
-              px-4
-              py-2
-              rounded-lg
-            "
+            className="border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderColor: "#D2D2D2",
+              color: "#2F2F2F",
+            }}
           >
             <option value="">All Status</option>
 
@@ -120,12 +114,18 @@ export default function Page() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center min-h-100">
-          <div className="text-gray-400">Loading...</div>
+        <div
+          className="flex items-center justify-center min-h-100"
+          style={{ color: "#666666" }}
+        >
+          Loading...
         </div>
       ) : data.length === 0 ? (
-        <div className="flex items-center justify-center min-h-100">
-          <div className="text-gray-400">No extinguishers found</div>
+        <div
+          className="flex items-center justify-center min-h-100"
+          style={{ color: "#666666" }}
+        >
+          No extinguishers found
         </div>
       ) : (
         <>
