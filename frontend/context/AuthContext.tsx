@@ -1,55 +1,35 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { Admin } from "@/types";
 
-import { authService } from "@/services/authService";
+import * as authService from "@/services/authService";
 
-import {
-  clearToken,
-  getToken,
-  saveToken
-} from "@/lib/auth";
+import { clearToken, getToken, saveToken } from "@/lib/auth";
 
 interface AuthContextType {
   admin: Admin | null;
 
   loading: boolean;
 
-  login: (
-    token: string,
-    admin: Admin
-  ) => void;
+  login: (token: string, admin: Admin) => void;
 
   logout: () => void;
 
   refreshUser: () => Promise<void>;
 }
 
-const AuthContext =
-  createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider = ({
-  children
-}: {
-  children: React.ReactNode;
-}) => {
-  const [admin, setAdmin] =
-    useState<Admin | null>(null);
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [admin, setAdmin] = useState<Admin | null>(null);
 
-  const [loading, setLoading] =
-    useState(true);
+  const [loading, setLoading] = useState(true);
 
   const refreshUser = async () => {
     try {
-      const response =
-        await authService.getMe();
+      const response = await authService.getMe();
 
       setAdmin(response.data);
     } catch {
@@ -58,10 +38,7 @@ export const AuthProvider = ({
     }
   };
 
-  const login = (
-    token: string,
-    admin: Admin
-  ) => {
+  const login = (token: string, admin: Admin) => {
     saveToken(token);
     setAdmin(admin);
   };
@@ -83,8 +60,7 @@ export const AuthProvider = ({
       return;
     }
 
-    refreshUser()
-      .finally(() => setLoading(false));
+    refreshUser().finally(() => setLoading(false));
   }, []);
 
   return (
@@ -94,7 +70,7 @@ export const AuthProvider = ({
         loading,
         login,
         logout,
-        refreshUser
+        refreshUser,
       }}
     >
       {children}
@@ -103,13 +79,10 @@ export const AuthProvider = ({
 };
 
 export const useAuthContext = () => {
-  const context =
-    useContext(AuthContext);
+  const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error(
-      "AuthContext missing"
-    );
+    throw new Error("AuthContext missing");
   }
 
   return context;
