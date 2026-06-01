@@ -411,6 +411,6 @@ router.put("/:id/mark-reported", protect, markReported);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/dashboard-stats", protect, getDashboardStats);
+router.get("/dash/dashboard-stats", protect, getDashboardStats);
 
 export default router;

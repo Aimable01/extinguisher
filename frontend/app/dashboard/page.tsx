@@ -26,7 +26,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const load = async () => {
       try {
-        const response = await api.get("/extinguishers/dashboard-stats");
+        const response = await api.get("/extinguishers/dash/dashboard-stats");
 
         setData(response.data.data);
       } catch (error) {
@@ -41,7 +41,7 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-gray-400">Loading dashboard...</div>
       </div>
     );
@@ -49,7 +49,7 @@ export default function DashboardPage() {
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-red-400">Failed to load dashboard data</div>
       </div>
     );
