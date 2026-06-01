@@ -27,7 +27,7 @@ export default function Page() {
     const load = async () => {
       try {
         const response = await extinguisherService.getOne(params.id as string);
-        setExtinguisher(response.data.data);
+        setExtinguisher(response.data);
       } catch (error) {
         console.error("Failed to fetch extinguisher:", error);
         toast.error("Failed to load extinguisher");
@@ -41,7 +41,7 @@ export default function Page() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-gray-400">Loading...</div>
       </div>
     );
@@ -49,7 +49,7 @@ export default function Page() {
 
   if (!extinguisher) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-red-400">Extinguisher not found</div>
       </div>
     );

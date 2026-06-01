@@ -27,7 +27,7 @@ export default function Page() {
     const load = async () => {
       try {
         const response = await extinguisherService.getOne(params.id as string);
-        setData(response.data.data);
+        setData(response.data);
       } catch (error) {
         console.error("Failed to fetch extinguisher:", error);
         toast.error("Failed to load extinguisher details");
@@ -41,11 +41,12 @@ export default function Page() {
 
   const handleMarkReported = async () => {
     try {
+      if (!data) return;
       await extinguisherService.markReported(data._id);
       toast.success("Marked as reported successfully");
       // Reload the data
       const response = await extinguisherService.getOne(params.id as string);
-      setData(response.data.data);
+      setData(response.data);
     } catch (error) {
       console.error("Failed to mark as reported:", error);
       toast.error("Failed to mark as reported");
@@ -54,7 +55,7 @@ export default function Page() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-gray-400">Loading...</div>
       </div>
     );
@@ -62,7 +63,7 @@ export default function Page() {
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-red-400">Extinguisher not found</div>
       </div>
     );
