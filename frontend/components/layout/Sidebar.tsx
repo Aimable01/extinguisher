@@ -16,6 +16,11 @@ export default function Sidebar() {
       href: "/dashboard/extinguishers",
       label: "Extinguishers",
     },
+
+    {
+      href: "/dashboard/profile",
+      label: "Profile",
+    },
   ];
 
   return (

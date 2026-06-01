@@ -4,6 +4,8 @@ export interface IAdmin extends Document {
   name: string;
   email: string;
   password: string;
+  resetToken?: string;
+  resetTokenExpiry?: Date;
 }
 
 const adminSchema = new Schema<IAdmin>(
@@ -24,6 +26,14 @@ const adminSchema = new Schema<IAdmin>(
     password: {
       type: String,
       required: true,
+    },
+
+    resetToken: {
+      type: String,
+    },
+
+    resetTokenExpiry: {
+      type: Date,
     },
   },
   {

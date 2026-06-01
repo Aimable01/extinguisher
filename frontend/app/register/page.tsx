@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 
-import { z } from "zod";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import toast from "react-hot-toast";
@@ -13,38 +11,30 @@ import toast from "react-hot-toast";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
-import { login } from "@/services/authService";
+import { register } from "@/services/authService";
 
-const schema = z.object({
-  email: z.string().email(),
+import { registerSchema, RegisterSchema } from "@/validations/registerSchema";
 
-  password: z.string().min(6),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
 
   const {
-    register,
+    register: registerField,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: RegisterSchema) => {
     try {
-      await login(data.email, data.password);
+      await register(data.name, data.email, data.password);
 
-      sessionStorage.setItem("otp_email", data.email);
+      toast.success("Registration successful. Please login.");
 
-      toast.success("OTP sent successfully");
-
-      router.push("/verify-otp");
+      router.push("/login");
     } catch (error: any) {
-      toast.error(error.response?.data?.message || "Login failed");
+      toast.error(error.response?.data?.message || "Registration failed");
     }
   };
 
@@ -62,47 +52,42 @@ export default function LoginPage() {
         }}
       >
         <h1 className="text-2xl font-bold" style={{ color: "#2F2F2F" }}>
-          Admin Login
+          Create Account
         </h1>
 
         <Input
+          label="Full Name"
+          {...registerField("name")}
+          error={errors.name?.message}
+        />
+
+        <Input
           label="Email"
-          {...register("email")}
+          type="email"
+          {...registerField("email")}
           error={errors.email?.message}
         />
 
         <Input
           type="password"
           label="Password"
-          {...register("password")}
+          {...registerField("password")}
           error={errors.password?.message}
         />
 
-        <Button loading={isSubmitting}>Continue</Button>
+        <Button loading={isSubmitting}>Register</Button>
+
+        <p className="text-center" style={{ color: "#666666" }}>
+          Already have an account?{" "}
+          <a
+            href="/login"
+            className="font-medium"
+            style={{ color: "#2F2F2F" }}
+          >
+            Login
+          </a>
+        </p>
       </form>
-
-      <div className="mt-4 text-center space-y-2" style={{ color: "#666666" }}>
-        <p>
-          Don't have an account?{" "}
-          <a
-            href="/register"
-            className="font-medium"
-            style={{ color: "#2F2F2F" }}
-          >
-            Register
-          </a>
-        </p>
-
-        <p>
-          <a
-            href="/forgot-password"
-            className="font-medium"
-            style={{ color: "#2F2F2F" }}
-          >
-            Forgot password?
-          </a>
-        </p>
-      </div>
     </div>
   );
 }

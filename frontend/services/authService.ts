@@ -37,3 +37,55 @@ export const logout = async () => {
 
   return response.data;
 };
+
+export const register = async (
+  name: string,
+  email: string,
+  password: string,
+) => {
+  const response = await api.post("/auth/register", {
+    name,
+    email,
+    password,
+  });
+
+  return response.data;
+};
+
+export const forgotPassword = async (email: string) => {
+  const response = await api.post("/auth/forgot-password", {
+    email,
+  });
+
+  return response.data;
+};
+
+export const resetPassword = async (token: string, password: string) => {
+  const response = await api.post("/auth/reset-password", {
+    token,
+    password,
+  });
+
+  return response.data;
+};
+
+export const updateProfile = async (name: string, email: string) => {
+  const response = await api.put("/auth/update-profile", {
+    name,
+    email,
+  });
+
+  return response.data;
+};
+
+export const changePassword = async (
+  currentPassword: string,
+  newPassword: string,
+) => {
+  const response = await api.post("/auth/change-password", {
+    currentPassword,
+    newPassword,
+  });
+
+  return response.data;
+};

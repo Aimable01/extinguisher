@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { logger } from "../utils/logger";
 
 export const errorHandler = (
   err: any,
@@ -6,9 +7,8 @@ export const errorHandler = (
   res: Response,
   next: NextFunction,
 ) => {
-  // Log error with timestamp and request details
-  console.error(`[${new Date().toISOString()}] ERROR:`, {
-    message: err.message,
+  // Log error with timestamp and request details to file
+  logger.error(err.message, {
     stack: err.stack,
     url: req.url,
     method: req.method,

@@ -18,15 +18,29 @@ import { startCronJobs } from "./services/cronService";
 
 import { errorHandler } from "./middleware/errorMiddleware";
 import { rateLimiter } from "./middleware/rateLimit";
+import { logger } from "./utils/logger";
 
 dotenv.config();
 
 const app = express();
 
-// Enhanced logging with timestamps
+// Enhanced logging with timestamps and file logging
 app.use(
   morgan(
     ":date[iso] :method :url :status :res[content-length] - :response-time ms",
+    {
+      stream: {
+        write: (message) => {
+          const parts = message.trim().split(" ");
+          const method = parts[1];
+          const url = parts[2];
+          const status = parseInt(parts[3]);
+          const contentLength = parts[4];
+          const responseTime = parts[parts.length - 2];
+          logger.http(method, url, status, responseTime, contentLength);
+        },
+      },
+    },
   ),
 );
 
