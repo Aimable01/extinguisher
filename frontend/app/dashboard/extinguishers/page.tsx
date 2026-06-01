@@ -41,8 +41,8 @@ export default function Page() {
         status,
       );
 
-      setData(response.data.data);
-      setTotalPages(response.data.pagination.pages);
+      setData(response.data ?? []);
+      setTotalPages(response.pagination?.pages ?? 1);
     } catch (error) {
       console.error("Failed to fetch extinguishers:", error);
       toast.error("Failed to load extinguishers");
@@ -120,11 +120,11 @@ export default function Page() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center min-h-[400px]">
+        <div className="flex items-center justify-center min-h-100">
           <div className="text-gray-400">Loading...</div>
         </div>
       ) : data.length === 0 ? (
-        <div className="flex items-center justify-center min-h-[400px]">
+        <div className="flex items-center justify-center min-h-100">
           <div className="text-gray-400">No extinguishers found</div>
         </div>
       ) : (
