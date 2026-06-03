@@ -1,15 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { clearToken } from "@/lib/auth";
+import Modal from "../ui/Modal";
 
 export default function Header() {
   const router = useRouter();
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  const logout = () => {
+  // This handles the actual logout logic once confirmed
+  const handleConfirmLogout = () => {
     clearToken();
-
+    setIsLogoutModalOpen(false);
     router.push("/login");
   };
 
@@ -26,7 +30,7 @@ export default function Header() {
       </h2>
 
       <button
-        onClick={logout}
+        onClick={() => setIsLogoutModalOpen(true)}
         className="px-4 py-2 rounded-lg transition hover:bg-red-700"
         style={{
           backgroundColor: "#D32F2F",
@@ -35,6 +39,15 @@ export default function Header() {
       >
         Logout
       </button>
+
+      <Modal
+        open={isLogoutModalOpen}
+        title="Confirm Logout"
+        message="Are you sure you want to log out of your account?"
+        confirmLabel="Logout"
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleConfirmLogout}
+      />
     </header>
   );
 }

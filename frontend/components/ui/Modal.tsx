@@ -4,6 +4,7 @@ interface Props {
   open: boolean;
   title: string;
   message: string;
+  confirmLabel?: string; // Optional prop to customize the action button text
   onConfirm: () => void;
   onClose: () => void;
 }
@@ -12,6 +13,7 @@ export default function Modal({
   open,
   title,
   message,
+  confirmLabel = "Confirm", // Defaults to "Confirm" if not provided
   onConfirm,
   onClose,
 }: Props) {
@@ -52,7 +54,7 @@ export default function Modal({
               color: "#FFFFFF",
             }}
           >
-            Delete
+            {confirmLabel}
           </button>
         </div>
       </div>
